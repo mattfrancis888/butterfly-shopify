@@ -36,7 +36,8 @@ app.prepare().then(() => {
             afterAuth(ctx) {
                 const { shop, scope } = ctx.state.shopify;
                 ACTIVE_SHOPIFY_SHOPS[shop] = scope;
-                ctx.redirect(`/`);
+                ctx.redirect(`/?shop=${shop}`); //Shopify API says to do ctx.redirect('/'), which is wrong.
+                //Follow this instead:   https://github.com/Shopify/shopify-app-node/blob/tutorial_build_interface_with_polaris/server.js
             },
         })
     );
