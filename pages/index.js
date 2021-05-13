@@ -1,5 +1,7 @@
 import { TextStyle, EmptyState, Layout, Page } from "@shopify/polaris";
+import store from "store-js";
 const img = "https://cdn.shopify.com/s/files/1/0757/9955/files/empty-state.svg";
+import ResourceListWithProducts from "../components/ResourceList";
 const Index = () => (
     <Page>
         <Layout>
@@ -16,6 +18,7 @@ const Index = () => (
             >
                 <p>Select products to change their price temporarily.</p>
             </EmptyState>
+            <ResourceListWithProducts />
         </Layout>
     </Page>
 );
