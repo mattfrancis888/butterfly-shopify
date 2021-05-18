@@ -14,6 +14,7 @@ function userLoggedInFetch(app) {
     const fetchFunction = authenticatedFetch(app);
 
     return async (uri, options) => {
+        console.log("URI", uri);
         const response = await fetchFunction(uri, options);
 
         if (
@@ -42,6 +43,7 @@ class MyProvider extends React.Component {
 
         const client = new ApolloClient({
             // fetch: authenticatedFetch(app),
+
             fetch: userLoggedInFetch(app),
             fetchOptions: {
                 credentials: "include",

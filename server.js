@@ -6,10 +6,11 @@ const { default: createShopifyAuth } = require("@shopify/koa-shopify-auth");
 const { verifyRequest } = require("@shopify/koa-shopify-auth");
 const { default: Shopify, ApiVersion } = require("@shopify/shopify-api");
 const Router = require("koa-router");
+//Billing API section import, I stopped at step 4 because I get the idea:
+const getSubscriptionUrl = require("./server/getSubscriptionUrl");
 
 dotenv.config();
 
-console.log(process.env.SHOPIFY_API_KEY, process.env.SHOPIFY_API_SECRET);
 Shopify.Context.initialize({
     API_KEY: process.env.SHOPIFY_API_KEY,
     API_SECRET_KEY: process.env.SHOPIFY_API_SECRET,
@@ -18,6 +19,8 @@ Shopify.Context.initialize({
     API_VERSION: ApiVersion.October20,
     IS_EMBEDDED_APP: true,
     SESSION_STORAGE: new Shopify.Session.MemorySessionStorage(),
+    shopOrigin: Cookies.get("shopOrigin"),
+    forceRedirect: true,
 });
 
 const port = parseInt(process.env.PORT, 10) || 3000;

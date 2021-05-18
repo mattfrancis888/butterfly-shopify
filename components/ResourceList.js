@@ -34,11 +34,14 @@ const GET_PRODUCTS_BY_ID = gql`
 class ResourceListWithProducts extends React.Component {
     render() {
         return (
-            <Query query={GET_PRODUCTS_BY_ID} variables={{ ids: 1 }}>
+            <Query
+                query={GET_PRODUCTS_BY_ID}
+                variables={{ ids: "gid://shopify/Product/6716637249718" }}
+            >
                 {({ data, loading, error }) => {
                     if (loading) return <div>Loading…</div>;
                     if (error) return <div>{error.message}</div>;
-                    console.log(data);
+                    // console.log("Resource List data", data);
                     return (
                         <Card>
                             <p>stuff here</p>

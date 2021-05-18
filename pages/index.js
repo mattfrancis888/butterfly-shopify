@@ -1,8 +1,20 @@
-import { TextStyle, EmptyState, Layout, Page } from "@shopify/polaris";
 import store from "store-js";
 const img = "https://cdn.shopify.com/s/files/1/0757/9955/files/empty-state.svg";
 import ResourceListWithProducts from "../components/ResourceList";
+import Collection from "../components/Collection";
 import { TitleBar } from "@shopify/app-bridge-react";
+import {
+    TextStyle,
+    EmptyState,
+    Card,
+    DisplayText,
+    Form,
+    FormLayout,
+    Layout,
+    Page,
+    PageActions,
+    TextField,
+} from "@shopify/polaris";
 const Index = () => (
     <Page>
         <TitleBar
@@ -25,7 +37,22 @@ const Index = () => (
             >
                 <p>Select products to change their price temporarily.</p>
             </EmptyState>
-            <ResourceListWithProducts />
+            {/* <ResourceListWithProducts /> */}
+            <TextField
+                prefix="$"
+                value={"0"}
+                disabled={true}
+                label="Original price"
+                type="price"
+            />
+            <TextField
+                prefix="$"
+                value={"0"}
+                // onChange={this.handleChange("discount")}
+                label="Discounted price"
+                type="discount"
+            />
+            <Collection />
         </Layout>
     </Page>
 );
