@@ -8,6 +8,7 @@ const { default: Shopify, ApiVersion } = require("@shopify/shopify-api");
 const Router = require("koa-router");
 //Billing API section import, I stopped at step 4 because I get the idea:
 const getSubscriptionUrl = require("./server/getSubscriptionUrl");
+var Cookies = require("cookies");
 
 dotenv.config();
 
@@ -19,7 +20,7 @@ Shopify.Context.initialize({
     API_VERSION: ApiVersion.October20,
     IS_EMBEDDED_APP: true,
     SESSION_STORAGE: new Shopify.Session.MemorySessionStorage(),
-    shopOrigin: Cookies.get("shopOrigin"),
+    // shopOrigin: Cookies.get("shopOrigin"),
     forceRedirect: true,
 });
 

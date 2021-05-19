@@ -4,6 +4,7 @@ import gql from "graphql-tag";
 import { Query } from "react-apollo";
 import { Card } from "@shopify/polaris";
 import { useQuery } from "@apollo/react-hooks";
+import { getRedirectStatus } from "next/dist/lib/load-custom-routes";
 const GET_COLLECTIONS = gql`
     {
         collections(first: 10) {
@@ -20,6 +21,19 @@ const GET_COLLECTIONS = gql`
     }
 `;
 
+const renderContent = (data) => {
+    if (data) {
+        return (
+            <React.Fragment>
+                <p>Hi</p>
+                {data.collections.edges.map((collection, index) => {
+                    return <Card key={index}>hi</Card>;
+                })}
+            </React.Fragment>
+        );
+    }
+};
+
 const Collection = () => {
     const { loading, error, data } = useQuery(GET_COLLECTIONS);
 
@@ -30,13 +44,10 @@ const Collection = () => {
     if (loading) {
         return <div className="loadingCenter">Loading</div>;
     }
-    return (
-        // if (loading) return <div>Loading…</div>;
-        // if (error) return <div>{error.message}</div>;
-
-        <Card>
-            <p>{data}</p>
-        </Card>
-    );
+    if (data) {
+        console.log("Collections", data);
+        console.log("Collections2", data.collections.edges);
+        return <React.Fragment>{renderContent(data)}</React.Fragment>;
+    }
 };
 export default Collection;
