@@ -19,3 +19,78 @@ mutation exampleProductCreate($input: ProductInput!) {
   {
     "input": {"title": "test product", "productType": "test type"}
   }
+
+//Get products:
+
+{
+  products(first: 2) {
+    edges {
+      cursor
+      node {
+        id
+      }
+    }
+  }
+}
+//Get product based on  id:
+{
+  product(id: "gid://shopify/Product/6716637249718") {
+      title
+      description
+      onlineStoreUrl
+    }
+}
+//Get collections:
+{
+  collections(first: 10) {
+    edges {
+      node {
+        id
+        title
+        description
+        handle
+        productsCount
+      }
+    }
+  }
+}
+
+//Add tags:
+mutation tagsAdd($id: ID!, $tags: [String!]!) {
+  tagsAdd(id: $id, tags: $tags) {
+    node {
+      id
+    }
+    userErrors {
+      field
+      message
+    }
+  }
+}
+//Query Var:
+{
+  "id": "gid://shopify/Product/6716637249718",
+  "tags": [
+    "placeholder"
+  ]
+}
+
+mutation tagsRemove($id: ID!, $tags: [String!]!) {
+  tagsRemove(id: $id, tags: $tags) {
+    node {
+      id
+    }
+    userErrors {
+      field
+      message
+    }
+  }
+}
+
+//Query Var:
+{
+  "id": "gid://shopify/Product/6716637249718",
+  "tags": [
+    "placeholder"
+  ]
+}
