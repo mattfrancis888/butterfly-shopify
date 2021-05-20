@@ -5,6 +5,7 @@ import { AppProvider } from "@shopify/polaris";
 import { Provider, Context } from "@shopify/app-bridge-react";
 import { authenticatedFetch } from "@shopify/app-bridge-utils";
 import "@shopify/polaris/dist/styles.css";
+import "../css/main.css";
 import translations from "@shopify/polaris/locales/en.json";
 import ClientRouter from "../components/ClientRouter";
 import ApolloClient from "apollo-boost";

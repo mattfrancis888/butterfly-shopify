@@ -17,11 +17,13 @@ import {
 } from "@shopify/polaris";
 const Index = () => (
     <Page>
+        <p className="title">Test Me</p>
         <TitleBar
             title="Sample App"
             primaryAction={{
                 content: "Select products",
             }}
+            className="title"
         />
         <Layout>
             <TextStyle variation="positive">
