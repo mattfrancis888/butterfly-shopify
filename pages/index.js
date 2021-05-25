@@ -16,6 +16,8 @@ import {
     TextField,
     Button,
 } from "@shopify/polaris";
+
+import AutoComplete from "../components/AutoComplete";
 import React, { useState, useCallback } from "react";
 const Index = () => {
     const [value, setValue] = useState("Jaded Pixel");
@@ -63,6 +65,7 @@ const Index = () => {
                 />
                 <Button>Add product</Button>
                 <Collection />
+                <AutoComplete />
             </Layout>
         </Page>
     );

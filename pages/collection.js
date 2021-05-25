@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useRef, useEffect, useState, useCallback } from "react";
+
+import AutoComplete from "../components/AutoComplete";
 import {
     Button,
     Card,
@@ -11,32 +13,32 @@ import {
 } from "@shopify/polaris";
 
 class AnnotatedLayout extends React.Component {
-    state = {
-        discount: "10%",
-    };
+    // state = {
+    //     discount: "10%",
+    // };
 
     render() {
-        const { discount } = this.state;
+        // const { discount } = this.state;
 
         return (
             <Page>
                 <Layout>
                     <Layout.AnnotatedSection
-                        title="Default discount"
-                        description="I am in annotated-layout"
+                        title="Enter Collection"
+                        description="Collection will be used for discounts"
                     >
                         <Card sectioned>
                             <Form onSubmit={this.handleSubmit}>
                                 <FormLayout>
                                     <TextField
-                                        value={discount}
                                         onChange={this.handleChange("discount")}
-                                        label="Discount percentage"
+                                        label="Collection"
                                         type="discount"
                                     />
+                                    <AutoComplete />
                                     <Stack distribution="trailing">
                                         <Button primary submit>
-                                            Save
+                                            Submit
                                         </Button>
                                     </Stack>
                                 </FormLayout>
@@ -48,12 +50,12 @@ class AnnotatedLayout extends React.Component {
         );
     }
 
-    handleSubmit = () => {
-        this.setState({
-            discount: this.state.discount,
-        });
-        console.log("submission", this.state);
-    };
+    // handleSubmit = () => {
+    //     this.setState({
+    //         discount: this.state.discount,
+    //     });
+    //     console.log("submission", this.state);
+    // };
 
     handleChange = (field) => {
         return (value) => this.setState({ [field]: value });
