@@ -33,7 +33,8 @@ class AnnotatedLayout extends React.Component {
                                     <TextField
                                         onChange={this.handleChange("discount")}
                                         label="Collection"
-                                        type="discount"
+                                        type="collection"
+
                                     />
                                     <AutoComplete />
                                     <Stack distribution="trailing">
