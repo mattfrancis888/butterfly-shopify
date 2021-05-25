@@ -14,49 +14,58 @@ import {
     Page,
     PageActions,
     TextField,
+    Button,
 } from "@shopify/polaris";
-const Index = () => (
-    <Page>
-        <p className="title">Test Me</p>
-        <TitleBar
-            title="Sample App"
-            primaryAction={{
-                content: "Select products",
-            }}
-            className="title"
-        />
-        <Layout>
-            <TextStyle variation="positive">
-                Sample app using React and Next.js
-            </TextStyle>
-            <EmptyState
-                heading="Discount your products temporarily"
-                action={{
+import React, { useState, useCallback } from "react";
+const Index = () => {
+    const [value, setValue] = useState("Jaded Pixel");
+    const handleChange = useCallback((newValue) => setValue(newValue), []);
+    return (
+        <Page>
+            <p className="title">Test Me</p>
+            <TitleBar
+                title="Sample App"
+                primaryAction={{
                     content: "Select products",
-                    onAction: () => console.log("clicked"),
                 }}
-                image={img}
-            >
-                <p>Select products to change their price temporarily.</p>
-            </EmptyState>
-            {/* <ResourceListWithProducts /> */}
-            <TextField
-                prefix="$"
-                value={"0"}
-                disabled={true}
-                label="Original price"
-                type="price"
+                className="title"
             />
-            <TextField
-                prefix="$"
-                value={"0"}
-                // onChange={this.handleChange("discount")}
-                label="Discounted price"
-                type="discount"
-            />
-            <Collection />
-        </Layout>
-    </Page>
-);
+            <Layout>
+                <TextStyle variation="positive">
+                    Sample app using React and Next.js
+                </TextStyle>
+                <EmptyState
+                    heading="Discount your products temporarily"
+                    action={{
+                        content: "Select products",
+                        onAction: () => console.log("clicked"),
+                    }}
+                    image={img}
+                >
+                    <p>Select products to change their price temporarily.</p>
+                </EmptyState>
+                {/* <ResourceListWithProducts /> */}
+                <TextField
+                    prefix="$"
+                    value={"0"}
+                    disabled={true}
+                    label="Original price"
+                    type="price"
+                />
+                <TextField
+                    prefix="$"
+                    value={value}
+                    onChange={(text) => {
+                        handleChange(text);
+                    }}
+                    label="Discounted price"
+                    type="discount"
+                />
+                <Button>Add product</Button>
+                <Collection />
+            </Layout>
+        </Page>
+    );
+};
 
 export default Index;

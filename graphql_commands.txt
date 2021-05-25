@@ -94,3 +94,26 @@ mutation tagsRemove($id: ID!, $tags: [String!]!) {
     "placeholder"
   ]
 }
+
+
+//Update price:
+mutation productVariantUpdate($input: ProductVariantInput!) {
+  productVariantUpdate(input: $input) {
+    product {
+      id
+    }
+    productVariant {
+      id
+      price
+    }
+    userErrors {
+      field
+      message
+    }}}
+    
+{
+  "input": {
+    "id": "gid://shopify/ProductVariant/39786932371638",
+    "price": 10
+  }
+}
