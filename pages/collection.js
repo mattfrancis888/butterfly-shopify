@@ -19,7 +19,6 @@ class AnnotatedLayout extends React.Component {
 
     render() {
         // const { discount } = this.state;
-
         return (
             <Page>
                 <Layout>
@@ -34,7 +33,6 @@ class AnnotatedLayout extends React.Component {
                                         onChange={this.handleChange("discount")}
                                         label="Collection"
                                         type="collection"
-
                                     />
                                     <AutoComplete />
                                     <Stack distribution="trailing">

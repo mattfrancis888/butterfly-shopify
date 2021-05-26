@@ -19,15 +19,13 @@ const GET_COLLECTIONS = gql`
 `;
 
 const renderOptions = (data) => {
-    if (data) {
-        deselectedOptions = [];
-        console.log("data", data);
+    let deselectedOptions = [];
+    if (data.collections.edges.length > 0) {
         data.collections.edges.map((collection, index) => {
             let optionObj = {};
-            optionObj.value = collection.title;
-            objectObj.label = collection.title;
-            console.log(collection, optionobj);
-            deselectedOptions.push(collection);
+            optionObj.value = collection.node.title;
+            optionObj.label = collection.node.title;
+            deselectedOptions.push(optionObj);
         });
     }
     return deselectedOptions;
@@ -44,6 +42,7 @@ const AutoComplete = (props) => {
     const [options, setOptions] = useState(deselectedOptions);
     const [selectedOptions, setSelectedOptions] = useState([]);
     const [inputValue, setInputValue] = useState("");
+    const [firstRender, setFirstRender] = useState(true);
 
     const updateText = useCallback(
         (value) => {
@@ -96,15 +95,15 @@ const AutoComplete = (props) => {
     if (loading) {
         return <div className="loadingCenter">Loading</div>;
     }
-    if (data) {
-        console.log("Collections", data);
-        console.log("Collections2", data.collections.edges);
-        // setOptions(deselectedOptions);
+    if (data && firstRender) {
+        setOptions(renderOptions(data));
+        console.log("Collections4", options);
+        setFirstRender(false);
+    } else {
         return (
             <div style={{ height: "225px" }}>
                 <Autocomplete
-                    // options={options}
-                    options={() => renderOptions(data)}
+                    options={options}
                     selected={selectedOptions}
                     onSelect={updateSelection}
                     textField={textField}
