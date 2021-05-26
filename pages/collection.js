@@ -27,13 +27,13 @@ class AnnotatedLayout extends React.Component {
                         description="Collection will be used for discounts"
                     >
                         <Card sectioned>
-                            <Form onSubmit={this.handleSubmit}>
+                            <Form onSubmit={}>
                                 <FormLayout>
-                                    <TextField
+                                    {/* <TextField
                                         onChange={this.handleChange("discount")}
                                         label="Collection"
                                         type="collection"
-                                    />
+                                    /> */}
                                     <AutoComplete />
                                     <Stack distribution="trailing">
                                         <Button primary submit>
@@ -56,9 +56,9 @@ class AnnotatedLayout extends React.Component {
     //     console.log("submission", this.state);
     // };
 
-    handleChange = (field) => {
-        return (value) => this.setState({ [field]: value });
-    };
+    // handleChange = (field) => {
+    //     return (value) => this.setState({ [field]: value });
+    // };
 }
 
 export default AnnotatedLayout;

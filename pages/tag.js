@@ -16,7 +16,7 @@ import {
 } from "@shopify/polaris";
 import AutoComplete from "../components/AutoComplete";
 import React, { useState, useCallback } from "react";
-const Index = () => {
+const Tag = () => {
     const [value, setValue] = useState("Jaded Pixel");
     const handleChange = useCallback((newValue) => setValue(newValue), []);
     return (
@@ -44,4 +44,4 @@ const Index = () => {
     );
 };
 
-export default Index;
+export default Tag;
