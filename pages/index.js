@@ -40,7 +40,7 @@ const Index = () => {
             {option}
         </Tag>
     ));
-    console.log(selectedTags);
+    console.log("Render", selectedTags);
     return (
         <Page>
             <Layout>
@@ -51,9 +51,12 @@ const Index = () => {
                     <Card sectioned>
                         <Form
                             onSubmit={() => {
-                                selectedTags.push("Hi");
-                                setValue("Test");
-                                setSelectedTags(selectedTags);
+                                let data = [...selectedTags]; //DO NOT DO let data = selectedTags,
+                                // we should not mutate our hook value or else hook won't rerender
+                                //https://stackoverflow.com/questions/47802105/why-is-react-is-not-rerendering-after-setstate
+                                data.push(value);
+
+                                setSelectedTags(data);
                             }}
                         >
                             <FormLayout>
@@ -61,14 +64,7 @@ const Index = () => {
                                 <Tag>{value}</Tag>
                                 <Stack spacing="tight">{tagMarkup}</Stack>;
                                 <Stack distribution="trailing">
-                                    <Button
-                                        primary
-                                        submit
-                                        // onClick={() => {
-                                        //     let data = selectedTags.push("Hi");
-                                        //     console.log("test me", data[4]);
-                                        // }}
-                                    >
+                                    <Button primary submit>
                                         Submit Tag
                                     </Button>
                                 </Stack>
