@@ -12,13 +12,35 @@ import {
     Layout,
     Page,
     Stack,
-    TextField,
+    Tag,
 } from "@shopify/polaris";
 import AutoComplete from "../components/AutoComplete";
 import React, { useState, useCallback } from "react";
 const Index = () => {
     const [value, setValue] = useState("Jaded Pixel");
-    const handleChange = useCallback((newValue) => setValue(newValue), []);
+
+    const [selectedTags, setSelectedTags] = useState([
+        "Rustic",
+        "Antique",
+        "Vinyl",
+        "Refurbished",
+    ]);
+
+    const removeTag = useCallback(
+        (tag) => () => {
+            setSelectedTags((previousTags) =>
+                previousTags.filter((previousTag) => previousTag !== tag)
+            );
+        },
+        []
+    );
+
+    const tagMarkup = selectedTags.map((option) => (
+        <Tag key={option} onRemove={removeTag(option)}>
+            {option}
+        </Tag>
+    ));
+    console.log(selectedTags);
     return (
         <Page>
             <Layout>
@@ -27,12 +49,27 @@ const Index = () => {
                     description="Tag will be used to identify products"
                 >
                     <Card sectioned>
-                        <Form>
+                        <Form
+                            onSubmit={() => {
+                                selectedTags.push("Hi");
+                                setValue("Test");
+                                setSelectedTags(selectedTags);
+                            }}
+                        >
                             <FormLayout>
                                 <InputTag />
+                                <Tag>{value}</Tag>
+                                <Stack spacing="tight">{tagMarkup}</Stack>;
                                 <Stack distribution="trailing">
-                                    <Button primary submit>
-                                        Submit
+                                    <Button
+                                        primary
+                                        submit
+                                        // onClick={() => {
+                                        //     let data = selectedTags.push("Hi");
+                                        //     console.log("test me", data[4]);
+                                        // }}
+                                    >
+                                        Submit Tag
                                     </Button>
                                 </Stack>
                             </FormLayout>

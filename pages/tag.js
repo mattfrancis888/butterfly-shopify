@@ -12,6 +12,7 @@ import {
     Layout,
     Page,
     Stack,
+    Tag,
     TextField,
 } from "@shopify/polaris";
 import AutoComplete from "../components/AutoComplete";
@@ -19,6 +20,29 @@ import React, { useState, useCallback } from "react";
 const Tag = () => {
     const [value, setValue] = useState("Jaded Pixel");
     const handleChange = useCallback((newValue) => setValue(newValue), []);
+
+    const [selectedTags, setSelectedTags] = useState([
+        "Rustic",
+        "Antique",
+        "Vinyl",
+        "Refurbished",
+    ]);
+
+    const removeTag = useCallback(
+        (tag) => () => {
+            setSelectedTags((previousTags) =>
+                previousTags.filter((previousTag) => previousTag !== tag)
+            );
+        },
+        []
+    );
+
+    const tagMarkup = selectedTags.map((option) => (
+        <Tag key={option} onRemove={removeTag(option)}>
+            {option}
+        </Tag>
+    ));
+
     return (
         <Page>
             <Layout>
@@ -30,6 +54,7 @@ const Tag = () => {
                         <Form>
                             <FormLayout>
                                 <InputTag />
+                                <Stack spacing="tight">{tagMarkup}</Stack>;
                                 <Stack distribution="trailing">
                                     <Button primary submit>
                                         Submit
