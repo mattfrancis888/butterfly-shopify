@@ -36,7 +36,9 @@ const Collection = (props) => {
     return (
         <React.Fragment>
             <TextField label="Tag" value={value} onChange={handleChange} />
-            <Stack spacing="tight">{tagMarkup}</Stack>;
+            <div className="tagStackSpacing">
+                <Stack spacing="tight">{tagMarkup}</Stack>;
+            </div>
             <Stack distribution="trailing">
                 <Button
                     primary

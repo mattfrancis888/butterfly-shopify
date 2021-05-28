@@ -21,28 +21,36 @@ const Index = () => {
         <Page>
             <Layout>
                 <Layout.AnnotatedSection
-                    title="Enter Tag"
+                    title="Add/Remove Tag For Products"
                     description="Tag will be used to identify products"
                 >
                     <Card sectioned>
-                        <InputTag
-                            callback={(val) => {
-                                setValue(val);
-                            }}
-                        />
-                    </Card>
-
-                    <Card sectioned>
                         <InputTag />
                     </Card>
-                    <div className="tagsInputButttonWrap">
-                        <Button primary submit>
-                            Save
-                        </Button>
-                    </div>
                 </Layout.AnnotatedSection>
             </Layout>
+            <div className="layoutSpacing">
+                <Layout>
+                    <Layout.AnnotatedSection
+                        title="Add Custom Tag To Product"
+                        description="Tag will be used to identify products"
+                    >
+                        <Card sectioned>
+                            <InputTag
+                                callback={(val) => {
+                                    setValue(val);
+                                }}
+                            />
+                        </Card>
+
+                        <Card sectioned>
+                            <InputTag />
+                        </Card>
+                    </Layout.AnnotatedSection>
+                </Layout>
+            </div>
             {/*Calendar */}
+
             <Layout>
                 <Layout.AnnotatedSection
                     title="Enter Date"
@@ -71,9 +79,9 @@ const Index = () => {
                     </Card> */}
 
                     <div className="tagsInputButttonWrap">
-                        <Button primary submit>
+                        {/* <Button primary submit>
                             Save
-                        </Button>
+                        </Button> */}
                     </div>
                 </Layout.AnnotatedSection>
             </Layout>
