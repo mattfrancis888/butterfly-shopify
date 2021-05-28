@@ -48,11 +48,10 @@ const Index = () => {
             <div className="layoutSpacing">
                 <Layout>
                     <Layout.AnnotatedSection
-                        title="Start Date"
-                        description="Tag will be used to identify products"
+                        title="When will your discount take place?"
+                        description="Enter your start date and end date for your discount"
                     >
                         <Card sectioned>
-                            <Input />
                             <InputCalendar />
                         </Card>
                     </Layout.AnnotatedSection>
