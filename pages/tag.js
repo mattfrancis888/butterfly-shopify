@@ -13,13 +13,11 @@ import {
     Page,
     Stack,
     Tag,
-    TextField,
 } from "@shopify/polaris";
 import AutoComplete from "../components/AutoComplete";
 import React, { useState, useCallback } from "react";
 const Tag = () => {
     const [value, setValue] = useState("Jaded Pixel");
-    const handleChange = useCallback((newValue) => setValue(newValue), []);
 
     const [selectedTags, setSelectedTags] = useState([
         "Rustic",
@@ -42,7 +40,7 @@ const Tag = () => {
             {option}
         </Tag>
     ));
-
+    console.log("Render", selectedTags);
     return (
         <Page>
             <Layout>
@@ -51,18 +49,55 @@ const Tag = () => {
                     description="Tag will be used to identify products"
                 >
                     <Card sectioned>
-                        <Form>
+                        <Form
+                            onSubmit={() => {
+                                let data = [...selectedTags]; //DO NOT DO let data = selectedTags,
+                                // we should not mutate our hook value or else hook won't rerender
+                                //https://stackoverflow.com/questions/47802105/why-is-react-is-not-rerendering-after-setstate
+                                data.push(value);
+
+                                setSelectedTags(data);
+                            }}
+                        >
                             <FormLayout>
                                 <InputTag />
                                 <Stack spacing="tight">{tagMarkup}</Stack>;
                                 <Stack distribution="trailing">
                                     <Button primary submit>
-                                        Submit
+                                        Add Tag To Product
                                     </Button>
                                 </Stack>
                             </FormLayout>
                         </Form>
                     </Card>
+
+                    <Card sectioned>
+                        <Form
+                            onSubmit={() => {
+                                let data = [...selectedTags]; //DO NOT DO let data = selectedTags,
+                                // we should not mutate our hook value or else hook won't rerender
+                                //https://stackoverflow.com/questions/47802105/why-is-react-is-not-rerendering-after-setstate
+                                data.push(value);
+
+                                setSelectedTags(data);
+                            }}
+                        >
+                            <FormLayout>
+                                <InputTag />
+                                <Stack spacing="tight">{tagMarkup}</Stack>;
+                                <Stack distribution="trailing">
+                                    <Button primary submit>
+                                        Exclude Tag From Discount
+                                    </Button>
+                                </Stack>
+                            </FormLayout>
+                        </Form>
+                    </Card>
+                    <div className="tagsInputButttonWrap">
+                        <Button primary submit>
+                            Save
+                        </Button>
+                    </div>
                 </Layout.AnnotatedSection>
             </Layout>
         </Page>

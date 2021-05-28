@@ -17,30 +17,6 @@ import {
 import AutoComplete from "../components/AutoComplete";
 import React, { useState, useCallback } from "react";
 const Index = () => {
-    const [value, setValue] = useState("Jaded Pixel");
-
-    const [selectedTags, setSelectedTags] = useState([
-        "Rustic",
-        "Antique",
-        "Vinyl",
-        "Refurbished",
-    ]);
-
-    const removeTag = useCallback(
-        (tag) => () => {
-            setSelectedTags((previousTags) =>
-                previousTags.filter((previousTag) => previousTag !== tag)
-            );
-        },
-        []
-    );
-
-    const tagMarkup = selectedTags.map((option) => (
-        <Tag key={option} onRemove={removeTag(option)}>
-            {option}
-        </Tag>
-    ));
-    console.log("Render", selectedTags);
     return (
         <Page>
             <Layout>
@@ -49,29 +25,30 @@ const Index = () => {
                     description="Tag will be used to identify products"
                 >
                     <Card sectioned>
-                        <Form
-                            onSubmit={() => {
-                                let data = [...selectedTags]; //DO NOT DO let data = selectedTags,
-                                // we should not mutate our hook value or else hook won't rerender
-                                //https://stackoverflow.com/questions/47802105/why-is-react-is-not-rerendering-after-setstate
-                                data.push(value);
-
-                                setSelectedTags(data);
+                        <InputTag
+                            callback={(val) => {
+                                setValue(val);
                             }}
-                        >
-                            <FormLayout>
-                                <InputTag />
-                                <Stack spacing="tight">{tagMarkup}</Stack>;
-                                <Stack distribution="trailing">
-                                    <Button primary submit>
-                                        Add Tag To Product
-                                    </Button>
-                                </Stack>
-                            </FormLayout>
-                        </Form>
+                        />
                     </Card>
 
                     <Card sectioned>
+                        <InputTag />
+                    </Card>
+                    <div className="tagsInputButttonWrap">
+                        <Button primary submit>
+                            Save
+                        </Button>
+                    </div>
+                </Layout.AnnotatedSection>
+            </Layout>
+            {/*Calendar */}
+            <Layout>
+                <Layout.AnnotatedSection
+                    title="Enter Date"
+                    description="Start Date will indicate when discount will start. End date will indicate when discount will end."
+                >
+                    {/* <Card sectioned>
                         <Form
                             onSubmit={() => {
                                 let data = [...selectedTags]; //DO NOT DO let data = selectedTags,
@@ -84,15 +61,15 @@ const Index = () => {
                         >
                             <FormLayout>
                                 <InputTag />
-                                <Stack spacing="tight">{tagMarkup}</Stack>;
                                 <Stack distribution="trailing">
                                     <Button primary submit>
-                                        Exclude Tag From Discount
+                                        Add Date
                                     </Button>
                                 </Stack>
                             </FormLayout>
                         </Form>
-                    </Card>
+                    </Card> */}
+
                     <div className="tagsInputButttonWrap">
                         <Button primary submit>
                             Save
