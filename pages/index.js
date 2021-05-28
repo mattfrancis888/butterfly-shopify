@@ -4,6 +4,7 @@ import ResourceListWithProducts from "../components/ResourceList";
 import Collection from "../components/Collection";
 import { TitleBar } from "@shopify/app-bridge-react";
 import InputTag from "../components/InputTag";
+import Input from "../components/Input";
 import {
     Button,
     Card,
@@ -16,6 +17,7 @@ import {
 } from "@shopify/polaris";
 import AutoComplete from "../components/AutoComplete";
 import React, { useState, useCallback } from "react";
+import InputCalendar from "../components/InputCalendar";
 const Index = () => {
     return (
         <Page>
@@ -36,14 +38,6 @@ const Index = () => {
                         description="Tag will be used to identify products"
                     >
                         <Card sectioned>
-                            <InputTag
-                                callback={(val) => {
-                                    setValue(val);
-                                }}
-                            />
-                        </Card>
-
-                        <Card sectioned>
                             <InputTag />
                         </Card>
                     </Layout.AnnotatedSection>
@@ -51,40 +45,19 @@ const Index = () => {
             </div>
             {/*Calendar */}
 
-            <Layout>
-                <Layout.AnnotatedSection
-                    title="Enter Date"
-                    description="Start Date will indicate when discount will start. End date will indicate when discount will end."
-                >
-                    {/* <Card sectioned>
-                        <Form
-                            onSubmit={() => {
-                                let data = [...selectedTags]; //DO NOT DO let data = selectedTags,
-                                // we should not mutate our hook value or else hook won't rerender
-                                //https://stackoverflow.com/questions/47802105/why-is-react-is-not-rerendering-after-setstate
-                                data.push(value);
-
-                                setSelectedTags(data);
-                            }}
-                        >
-                            <FormLayout>
-                                <InputTag />
-                                <Stack distribution="trailing">
-                                    <Button primary submit>
-                                        Add Date
-                                    </Button>
-                                </Stack>
-                            </FormLayout>
-                        </Form>
-                    </Card> */}
-
-                    <div className="tagsInputButttonWrap">
-                        {/* <Button primary submit>
-                            Save
-                        </Button> */}
-                    </div>
-                </Layout.AnnotatedSection>
-            </Layout>
+            <div className="layoutSpacing">
+                <Layout>
+                    <Layout.AnnotatedSection
+                        title="Start Date"
+                        description="Tag will be used to identify products"
+                    >
+                        <Card sectioned>
+                            <Input />
+                            <InputCalendar />
+                        </Card>
+                    </Layout.AnnotatedSection>
+                </Layout>
+            </div>
         </Page>
     );
 };

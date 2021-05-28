@@ -45,12 +45,14 @@ const Collection = (props) => {
                     submit
                     onClick={() => {
                         // props.callback(value);
-                        let data = [...selectedTags]; //DO NOT DO let data = selectedTags,
-                        // we should not mutate our hook value or else hook won't rerender
-                        //https://stackoverflow.com/questions/47802105/why-is-react-is-not-rerendering-after-setstate
-                        data.push(value);
+                        if (value) {
+                            let data = [...selectedTags]; //DO NOT DO let data = selectedTags,
+                            // we should not mutate our hook value or else hook won't rerender
+                            //https://stackoverflow.com/questions/47802105/why-is-react-is-not-rerendering-after-setstate
+                            data.push(value);
 
-                        setSelectedTags(data);
+                            setSelectedTags(data);
+                        } else alert("Field cannot be empty");
                     }}
                 >
                     Add Tag To Product
