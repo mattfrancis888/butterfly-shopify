@@ -28,7 +28,7 @@ const Index = () => {
                     description="Tag will be used to identify products"
                 >
                     <Card sectioned>
-                        <InputTag />
+                        <InputTag title="Tag" />
                     </Card>
                 </Layout.AnnotatedSection>
             </Layout>
@@ -39,7 +39,7 @@ const Index = () => {
                         description="Tag will be used to identify products"
                     >
                         <Card sectioned>
-                            <InputTag />
+                            <InputTag title="Tag" />
                         </Card>
                     </Layout.AnnotatedSection>
                 </Layout>

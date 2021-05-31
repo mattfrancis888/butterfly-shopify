@@ -6,7 +6,7 @@ import { Card } from "@shopify/polaris";
 import { useQuery } from "@apollo/react-hooks";
 import { getRedirectStatus } from "next/dist/lib/load-custom-routes";
 import { TextField, Button, Tag, Stack } from "@shopify/polaris";
-const Collection = (props) => {
+const InputTag = (props) => {
     const [value, setValue] = useState("Jaded Pixel");
 
     const [selectedTags, setSelectedTags] = useState([
@@ -35,7 +35,11 @@ const Collection = (props) => {
 
     return (
         <React.Fragment>
-            <TextField label="Tag" value={value} onChange={handleChange} />
+            <TextField
+                label={props.title}
+                value={value}
+                onChange={handleChange}
+            />
             <div className="tagStackSpacing">
                 <Stack spacing="tight">{tagMarkup}</Stack>;
             </div>
@@ -61,4 +65,4 @@ const Collection = (props) => {
         </React.Fragment>
     );
 };
-export default Collection;
+export default InputTag;
