@@ -26,7 +26,23 @@ const DiscountForm = () => {
         if (value === FLAT_DISCOUNT_RADIO) {
             return <Input title="Flat Discount" type="number" prefix="%" />;
         } else {
-            return <InputTag title="Discount Based On Tag" />;
+            return (
+                <React.Fragment>
+                    <div className="submitButtonMarginWrap">
+                        <Button primary submit onClick={() => {}}>
+                            Add Discount
+                        </Button>
+                    </div>
+                    <Card.Section>
+                        <InputTag title="Discount Based On Tag" />
+                        <Input title="Discount %" type="number" prefix="%" />
+                    </Card.Section>
+                    <Card.Section>
+                        <InputTag title="Discount Based On Tag" />
+                        <Input title="Discount %" type="number" prefix="%" />
+                    </Card.Section>
+                </React.Fragment>
+            );
         }
     };
 

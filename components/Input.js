@@ -14,17 +14,19 @@ const Input = (props) => {
         if (props.prefix === "%") {
             return (
                 <Stack distribution="trailing">
-                    <Button
-                        primary
-                        submit
-                        onClick={() => {
-                            if (value > 100 || value < 0) {
-                                alert("Invalid percentage");
-                            }
-                        }}
-                    >
-                        Submit
-                    </Button>
+                    <div className="submitButtonMarginWrap">
+                        <Button
+                            primary
+                            submit
+                            onClick={() => {
+                                if (value > 100 || value < 0) {
+                                    alert("Invalid percentage");
+                                }
+                            }}
+                        >
+                            Submit
+                        </Button>
+                    </div>
                 </Stack>
             );
         }

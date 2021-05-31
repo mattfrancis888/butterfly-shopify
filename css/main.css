@@ -367,7 +367,8 @@ body {
   color: red;
 }
 
-.tagStackSpacing {
+.tagStackSpacing,
+.submitButtonMarginWrap {
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
