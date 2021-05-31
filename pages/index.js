@@ -18,6 +18,7 @@ import {
 import AutoComplete from "../components/AutoComplete";
 import React, { useState, useCallback } from "react";
 import InputCalendar from "../components/InputCalendar";
+import DiscountForm from "../components/DiscountForm";
 const Index = () => {
     return (
         <Page>
@@ -53,6 +54,18 @@ const Index = () => {
                     >
                         <Card sectioned>
                             <InputCalendar />
+                        </Card>
+                    </Layout.AnnotatedSection>
+                </Layout>
+            </div>
+            <div className="layoutSpacing">
+                <Layout>
+                    <Layout.AnnotatedSection
+                        title="Discount Percentage"
+                        description="Select 'Flat Discount' or 'Discount Based On Tag'"
+                    >
+                        <Card sectioned>
+                            <DiscountForm />
                         </Card>
                     </Layout.AnnotatedSection>
                 </Layout>
