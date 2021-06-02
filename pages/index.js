@@ -19,10 +19,25 @@ import AutoComplete from "../components/AutoComplete";
 import React, { useState, useCallback } from "react";
 import InputCalendar from "../components/InputCalendar";
 import DiscountForm from "../components/DiscountForm";
+import Result from "../components/Result";
+
 const Index = () => {
     return (
         <Page>
             <Layout>
+                <Layout.AnnotatedSection
+                    title="Enter Collection"
+                    description="Collection will be used for discounts"
+                >
+                    <Card sectioned>
+                        <AutoComplete />
+                        <Stack distribution="trailing">
+                            <Button primary submit>
+                                Submit
+                            </Button>
+                        </Stack>
+                    </Card>
+                </Layout.AnnotatedSection>
                 <Layout.AnnotatedSection
                     title="Add/Remove Tag For Products"
                     description="Tag will be used to identify products"
@@ -32,7 +47,7 @@ const Index = () => {
                     </Card>
                 </Layout.AnnotatedSection>
             </Layout>
-            <div className="layoutSpacing">
+            {/* <div className="layoutSpacing">
                 <Layout>
                     <Layout.AnnotatedSection
                         title="Add Custom Tag To Product"
@@ -43,7 +58,7 @@ const Index = () => {
                         </Card>
                     </Layout.AnnotatedSection>
                 </Layout>
-            </div>
+            </div> */}
             {/*Calendar */}
 
             <div className="layoutSpacing">
@@ -69,6 +84,9 @@ const Index = () => {
                         </Card>
                     </Layout.AnnotatedSection>
                 </Layout>
+            </div>
+            <div className="layoutSpacing">
+                <Result />
             </div>
         </Page>
     );

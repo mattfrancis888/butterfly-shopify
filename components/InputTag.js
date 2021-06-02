@@ -59,7 +59,7 @@ const InputTag = (props) => {
                         } else alert("Field cannot be empty");
                     }}
                 >
-                    Add Tag To Product
+                    Add Tag
                 </Button>
             </Stack>
         </React.Fragment>
